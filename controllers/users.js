@@ -100,3 +100,12 @@ module.exports.login = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports.logout = (req, res, next) => {
+  User.findById(req.params.id)
+    .then((user) => {
+      res.clearCookie('jwt');
+      res.send({ message: 'Успешый выход' });
+    })
+    .catch(next);
+};

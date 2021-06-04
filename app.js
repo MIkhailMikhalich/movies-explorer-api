@@ -7,7 +7,7 @@ const auth = require('./middlewares/auth.js');
 const NotFound = require('./errors/not-found-err.js');
 const users = require('./routes/users.js');
 const movies = require('./routes/movies.js');
-const { postUser, login } = require('./controllers/users.js');
+const { postUser, login, logout } = require('./controllers/users.js');
 const { requestLogger, errorLogger } = require('./middlewares/logger.js');
 
 const app = express();
@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost:27017/moviesDB', {
 });
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:3001',
   credentials: true,
 }));
 
@@ -45,6 +45,8 @@ app.post('/signup', celebrate({
 }), postUser);
 
 app.use(auth);
+
+app.post('/signout', logout);
 
 app.use('/users', users);
 
