@@ -1,5 +1,5 @@
 {
-  "name": "express-mesto",
+  "name": "movies-explorer",
   "version": "0.0.1",
   "description": "`/routes` — папка с файлами роутера  \r `/controllers` — папка с файлами контроллеров пользователя и карточки   \r `/models` — папка с файлами описания схем пользователя и карточки",
   "main": "app.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MIkhailMikhalich/express-mesto.git"
+    "url": "git+https://github.com/MIkhailMikhalich/movies-explorer-api.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MIkhailMikhalich/express-mesto/issues"
+    "url": "https://github.com/MIkhailMikhalich/movies-explorer-api/issues"
   },
-  "homepage": "https://github.com/MIkhailMikhalich/express-mesto#readme",
+  "homepage": "https://github.com/MIkhailMikhalich/movies-explorer-api#readme",
   "devDependencies": {
     "eslint": "^7.24.0",
     "eslint-config-airbnb-base": "^14.2.1",
