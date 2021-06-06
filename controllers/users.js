@@ -7,8 +7,6 @@ const AlreadyExsists = require('../errors/already-exists.js');
 const IncorrectAuthData = require('../errors/incorrect-auth-data.js');
 const IncorrectData = require('../errors/incorrect-data.js');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
-
 module.exports.postUser = (req, res, next) => {
   const { email, name, password } = req.body;
   return User.findOne({ email })
@@ -95,7 +93,7 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
         });
         res.send({
-          token: jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' }),
+          token: jwt.sign({ _id: user._id }, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'dev-secret', { expiresIn: '7d' }),
         });
       });
     })

@@ -9,10 +9,11 @@ const users = require('./routes/users.js');
 const movies = require('./routes/movies.js');
 const { postUser, login, logout } = require('./controllers/users.js');
 const { requestLogger, errorLogger } = require('./middlewares/logger.js');
-require('dotenv').config();
 
 const app = express();
 const { PORT = 3001 } = process.env;
+
+require('dotenv').config();
 
 mongoose.connect('mongodb://localhost:27017/moviesDB', {
   useNewUrlParser: true,
