@@ -1,11 +1,11 @@
 const objectId = require('mongodb').ObjectID;
+const regExp = require('../constants/constants.js');
 const NotFound = require('../errors/not-found-err.js');
 const IncorrectData = require('../errors/incorrect-data.js');
 const DoNotHavePermission = require('../errors/do-not-have-permisson.js');
 const Movie = require('../models/movie.js');
 
 module.exports.postMovie = (req, res, next) => {
-  const regExp = /(http|https)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&%\$#_]*)?([a-zA-Z0-9\-\?\,\'\/\+&%\$#_]+)/gim;
   const {
     country,
     director,

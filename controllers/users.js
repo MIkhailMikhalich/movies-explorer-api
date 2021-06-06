@@ -1,12 +1,13 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const validator = require('validator');
 const objectId = require('mongodb').ObjectID;
 const User = require('../models/user.js');
 const NotFound = require('../errors/not-found-err.js');
 const AlreadyExsists = require('../errors/already-exists.js');
 const IncorrectAuthData = require('../errors/incorrect-auth-data.js');
 const IncorrectData = require('../errors/incorrect-data.js');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.postUser = (req, res, next) => {
   const { email, name, password } = req.body;
@@ -94,7 +95,7 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
         });
         res.send({
-          token: jwt.sign({ _id: user._id }, 'jwt', { expiresIn: '7d' }),
+          token: jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' }),
         });
       });
     })
@@ -103,7 +104,7 @@ module.exports.login = (req, res, next) => {
 
 module.exports.logout = (req, res, next) => {
   User.findById(req.params.id)
-    .then((user) => {
+    .then(() => {
       res.clearCookie('jwt');
       res.send({ message: 'Успешый выход' });
     })

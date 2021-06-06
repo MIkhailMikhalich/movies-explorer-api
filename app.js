@@ -9,6 +9,7 @@ const users = require('./routes/users.js');
 const movies = require('./routes/movies.js');
 const { postUser, login, logout } = require('./controllers/users.js');
 const { requestLogger, errorLogger } = require('./middlewares/logger.js');
+require('dotenv').config();
 
 const app = express();
 const { PORT = 3001 } = process.env;
@@ -61,7 +62,7 @@ app.use(errorLogger);
 app.use(errors());
 
 app.use((err, req, res, next) => {
-  if (!res.statusCode || res.statusCode === 500) return res.status(500).send({ message: 'Произошла ошибка' });
+  if (!err.statusCode || err.statusCode === 500) return res.status(500).send({ message: 'Произошла ошибка' });
   if (err.name === 'ValidationError') return res.status(400).send({ message: err.message });
   return res.status(err.statusCode).send({ message: err.message });
 });

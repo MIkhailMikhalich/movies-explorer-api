@@ -18,7 +18,8 @@ router.get(
   '/:id',
   celebrate({
     params: Joi.object().keys({
-      id: Joi.string().alphanum().length(24).hex(),
+      id: Joi.string().alphanum().length(24).hex()
+        .required(),
     }),
   }),
   getUserById,
@@ -28,8 +29,8 @@ router.post(
   '/',
   celebrate({
     body: Joi.object().keys({
-      name: Joi.string().min(2).max(30),
-      email: Joi.string().email(),
+      name: Joi.string().min(2).max(30).required(),
+      email: Joi.string().email().required(),
     }),
   }),
   express.json(),
@@ -41,8 +42,8 @@ router.patch(
   express.json(),
   celebrate({
     body: Joi.object().keys({
-      name: Joi.string().min(2).max(30),
-      email: Joi.string().email(),
+      name: Joi.string().min(2).max(30).required(),
+      email: Joi.string().email().required(),
     }),
   }),
   updateUser,

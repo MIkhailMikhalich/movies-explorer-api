@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
+const regExp = require('../constants/constants.js');
 const {
   getMovies,
   postMovie,
@@ -22,29 +23,23 @@ router.post(
   '/',
   celebrate({
     body: Joi.object().keys({
-      country: Joi.string(),
-      director: Joi.string(),
-      duration: Joi.number(),
-      year: Joi.string(),
-      description: Joi.string(),
+      country: Joi.string().required(),
+      director: Joi.string().required(),
+      duration: Joi.number().required(),
+      year: Joi.string().required(),
+      description: Joi.string().required(),
       image: Joi.string().pattern(
-        new RegExp(
-          "(http|https)://[0-9a-zA-Z]([-.w]*[0-9a-zA-Z])*(:(0-9)*)*(/?)([a-zA-Z0-9-.?,'/\\+&%$#_]*)?([a-zA-Z0-9-?,'/+&%$#_]+)",
-        ),
-      ),
+        regExp,
+      ).required(),
       trailer: Joi.string().pattern(
-        new RegExp(
-          "(http|https)://[0-9a-zA-Z]([-.w]*[0-9a-zA-Z])*(:(0-9)*)*(/?)([a-zA-Z0-9-.?,'/\\+&%$#_]*)?([a-zA-Z0-9-?,'/+&%$#_]+)",
-        ),
-      ),
+        regExp,
+      ).required(),
       thumbnail: Joi.string().pattern(
-        new RegExp(
-          "(http|https)://[0-9a-zA-Z]([-.w]*[0-9a-zA-Z])*(:(0-9)*)*(/?)([a-zA-Z0-9-.?,'/\\+&%$#_]*)?([a-zA-Z0-9-?,'/+&%$#_]+)",
-        ),
-      ),
-      movieId: Joi.string(),
-      nameRU: Joi.string(),
-      nameEN: Joi.string().alphanum(),
+        regExp,
+      ).required(),
+      movieId: Joi.string().required(),
+      nameRU: Joi.string().required(),
+      nameEN: Joi.string().alphanum().required(),
     }),
   }),
   postMovie,
