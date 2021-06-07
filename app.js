@@ -11,7 +11,7 @@ const { PORT = 3001 } = process.env;
 
 require('dotenv').config();
 
-mongoose.connect(process.env.DB_Adress, {
+mongoose.connect(process.env.NODE_ENV === 'production' ? process.env.DB_Adress : 'mongodb://localhost:27017/moviesDB', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
