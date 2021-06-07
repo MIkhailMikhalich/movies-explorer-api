@@ -37,7 +37,7 @@ router.post(
       thumbnail: Joi.string().pattern(
         regExp,
       ).required(),
-      movieId: Joi.string().required(),
+      movieId: Joi.number().required(),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().alphanum().required(),
     }),
