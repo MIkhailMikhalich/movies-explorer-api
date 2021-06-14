@@ -64,14 +64,21 @@ module.exports.updateUser = (req, res, next) => {
   const { email, name } = req.body;
   if (!email || !name) throw new IncorrectData('Переданы некорректные данные');
   if (!req.user._id || !objectId.isValid(req.user._id)) throw new IncorrectData('Переданы некорректные данные');
-  User.findByIdAndUpdate(
-    req.user._id,
-    { email, name },
-    { new: true, runValidators: true },
-  )
+  User.findOne({ email })
     .then((user) => {
-      if (!user) throw new NotFound('Данный пользоватьель не найден');
-      return res.send({ data: user });
+      if (user) throw new AlreadyExsists('Данная почна занята');
+      else {
+        User.findByIdAndUpdate(
+          req.user._id,
+          { email, name },
+          { new: true, runValidators: true },
+        )
+          .then((updUser) => {
+            if (!updUser) throw new NotFound('Данный пользоватьель не найден');
+            return res.send({ data: updUser });
+          })
+          .catch(next);
+      }
     })
     .catch(next);
 };
