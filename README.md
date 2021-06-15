@@ -4,4 +4,4 @@
 * MongoDB
 * Express
 
-# Ссылка для обращения к серверу: 
+# Ссылка для обращения к серверу: https://api.medvedmovies-explorer.nomoredomains.club
