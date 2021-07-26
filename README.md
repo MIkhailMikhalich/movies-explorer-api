@@ -1,7 +1,15 @@
-# movies-explorer-api
+### БэкЭнд, приложения MoviesExplorer
+
 # Технологии:
 * Node.js
 * MongoDB
 * Express
 
-# Ссылка для обращения к серверу: https://api.medvedmovies-explorer.nomoredomains.club
+# Ссылка для обращения к серверу: https://api.medvedmovies-explorer.nomoredomains.club (Недоступен, закончился хост)
+* * * * *  
+## Статус:
+Проект закончен и доработок не требует
+## Инсрукция по развёртыванию:
+- Убедится в том что NodeJS установлен на пк
+- 
+- После установки репозитория на ПК открыть его через VisualStudioCode и в терминале написать npm run dev/ ну или прописать эту комманду в терминале который нужно вызвать в папке с проектом
